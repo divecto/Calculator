@@ -17,11 +17,19 @@ function clearCalculator() {
 }
  
 function inputDigit(digit) {
-    if (calculator.displayNumber === '0') {
+    if (digit === '.' && calculator.displayNumber.includes('.')) {
+        // Jika pengguna mencoba memasukkan titik (.) lagi, abaikan.
+        alert('Operator Desimal telah ditetapkan')
+        return;
+    }
+
+    if (calculator.displayNumber === '0' || calculator.waitingForSecondNumber) {
         calculator.displayNumber = digit;
+        calculator.waitingForSecondNumber = false;
     } else {
         calculator.displayNumber += digit;
     }
+    updateDisplay();
 }
 
 function inverseNumber() {
@@ -50,19 +58,31 @@ function performCalculation() {
  
     let result = 0;
     if (calculator.operator === "+") {
-        result = parseInt(calculator.firstNumber) + parseInt(calculator.displayNumber);
+        result = parseFloat(calculator.firstNumber) + parseFloat(calculator.displayNumber);
     } else if (calculator.operator === "-") {
-        result = parseInt(calculator.firstNumber) - parseInt(calculator.displayNumber);
+        result = parseFloat(calculator.firstNumber) - parseFloat(calculator.displayNumber);
     }else if (calculator.operator === "÷") {
-        result = parseInt(calculator.firstNumber) / parseInt(calculator.displayNumber);
+        if (displayNum === 0) {
+            alert("Tidak bisa membagi dengan nol");
+            return;
+        }
+        result = parseFloat(calculator.firstNumber) / parseFloat(calculator.displayNumber);
     }else {
-        result = parseInt(calculator.firstNumber) * parseInt(calculator.displayNumber);
+        result = parseFloat(calculator.firstNumber) * parseFloat(calculator.displayNumber);
     }
  
  
     calculator.displayNumber = result;
 }
 
+function backspace() {
+    calculator.displayNumber = calculator.displayNumber.slice(0, -1);
+    if (calculator.displayNumber === '') {
+      calculator.displayNumber = '0';
+    }
+    updateDisplay();
+}
+  
 const buttons = document.querySelectorAll(".button");
 for (let button of buttons) {
     button.addEventListener('click', function (event) {
@@ -92,7 +112,11 @@ for (let button of buttons) {
             handleOperator(target.innerText)
             return;
         }
- 
+        
+        if (target.classList.contains('backspace')) { 
+            backspace();
+        }
+
         inputDigit(target.innerText);
         updateDisplay()
     });
