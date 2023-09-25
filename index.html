@@ -17,117 +17,119 @@
   <body>
     <div class="calculator-dark">
       <div class="content">
-        <textarea class="numbers">6,291÷5</textarea>
-        <input class="numbers1" name="hasil" id="hasilnya" type="number" />
-
+        <!-- <textarea class="numbers displayNumber">0</textarea>
+        <input class="numbers1" name="hasil" id="hasilnya" type="number" /> -->
+        <div class="numbers">
+          <h1 id="displayNumber">0</h1>
+        </div>
         <div class="row">
-          <button class="button" id="delete_all">
+          <div class="button" id="delete_all">
             <img class="icon" alt="" src="./public/-icon.svg" />
 
-            <div class="text">C</div>
-          </button>
-          <button class="button">
+            <div class="text clear">C</div>
+          </div>
+          <div class="button negative">
             <img class="icon1" alt="" src="./public/-icon1.svg" />
 
             <div class="text1">±</div>
-          </button>
-          <button class="button" id="percent">
+          </div>
+          <div class="button" id="percent">
             <img class="icon" alt="" src="./public/-icon2.svg" />
 
             <div class="text">%</div>
-          </button>
-          <button class="button3">
+          </div>
+          <div class="button3 button">
             <img class="icon" alt="" src="./public/-icon3.svg" />
 
-            <div class="text">÷</div>
-          </button>
+            <div class="text operator">÷</div>
+          </div>
         </div>
         <div class="row1">
-          <button class="button4" id="seven">
+          <div class="button4 button" id="seven">
             <img class="icon" alt="" src="./public/-icon.svg" />
 
             <div class="text">7</div>
-          </button>
-          <button class="button4" id="eight">
+          </div>
+          <button class="button4 button" id="eight">
             <img class="icon" alt="" src="./public/-icon4.svg" />
 
             <div class="text">8</div>
           </button>
-          <button class="button4" id="nine">
+          <button class="button4 button" id="nine">
             <img class="icon" alt="" src="./public/-icon2.svg" />
 
             <div class="text">9</div>
           </button>
-          <button class="button3" id="kali">
+          <div class="button3 button" id="kali">
             <img class="icon" alt="" src="./public/-icon3.svg" />
 
-            <div class="text">×</div>
-          </button>
+            <div class="text operator">×</div>
+          </div>
         </div>
         <div class="row1">
-          <button class="button4" id="four">
+          <button class="button4 button" id="four">
             <img class="icon" alt="" src="./public/-icon.svg" />
 
             <div class="text">4</div>
           </button>
-          <button class="button4" id="five">
+          <button class="button4 button" id="five">
             <img class="icon" alt="" src="./public/-icon4.svg" />
 
             <div class="text">5</div>
           </button>
-          <button class="button4" id="six">
+          <button class="button4 button" id="six">
             <img class="icon" alt="" src="./public/-icon2.svg" />
 
             <div class="text">6</div>
           </button>
-          <button class="button3" id="min">
+          <button class="button3 button" id="min">
             <img class="icon" alt="" src="./public/-icon3.svg" />
 
-            <div class="text">–</div>
+            <div class="text operator">–</div>
           </button>
         </div>
         <div class="row1">
-          <button class="button4" id="one">
+          <button class="button4 button" id="one">
             <img class="icon" alt="" src="./public/-icon5.svg" />
 
             <div class="text">1</div>
           </button>
-          <button class="button4" id="two">
+          <button class="button4 button" id="two">
             <img class="icon" alt="" src="./public/-icon6.svg" />
 
             <div class="text">2</div>
           </button>
-          <button class="button4" id="three">
+          <button class="button4 button" id="three">
             <img class="icon" alt="" src="./public/-icon7.svg" />
 
             <div class="text">3</div>
           </button>
-          <button class="button3" id="plus">
+          <button class="button3 button" id="plus">
             <img class="icon" alt="" src="./public/-icon8.svg" />
 
-            <div class="text">+</div>
+            <div class="text operator">+</div>
           </button>
         </div>
         <div class="row1">
-          <button class="button4" id="koma">
+          <div class="button4 button" id="koma">
             <img class="icon" alt="" src="./public/-icon9.svg" />
 
             <div class="text">.</div>
-          </button>
-          <button class="button4" id="zero">
+          </div>
+          <button class="button4 button" id="zero">
             <img class="icon" alt="" src="./public/-icon10.svg" />
 
             <div class="text">0</div>
           </button>
-          <button class="button4" id="delete">
+          <div class="button4 button" id="delete">
             <img class="icon1" alt="" src="./public/-icon11.svg" />
 
             <div class="text18">⌫</div>
-          </button>
-          <button class="button3" id="equal">
+          </div>
+          <button class="button3 button" id="equal">
             <img class="icon" alt="" src="./public/-icon12.svg" />
 
-            <div class="text">=</div>
+            <div class="text equals double">=</div>
           </button>
         </div>
       </div>
@@ -147,5 +149,6 @@
       </div>
       <img class="frame-icon" alt="" src="./public/frame.svg" />
     </div>
+    <script src="index.js"></script>
   </body>
 </html>
