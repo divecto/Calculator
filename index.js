@@ -82,6 +82,22 @@ function backspace() {
     }
     updateDisplay();
 }
+
+function addPercentage() {
+    if (calculator.displayNumber === '0') {
+        return;
+    }
+    
+    // Mengkonversi nilai displayNumber menjadi float dan membaginya dengan 100
+    const value = parseFloat(calculator.displayNumber) / 100;
+
+    // Menetapkan hasil persen kembali ke displayNumber
+    calculator.displayNumber = value.toString();
+
+    // Memperbarui tampilan kalkulator
+    updateDisplay();
+}
+
   
 const buttons = document.querySelectorAll(".button");
 for (let button of buttons) {
@@ -115,6 +131,11 @@ for (let button of buttons) {
         
         if (target.classList.contains('backspace')) { 
             backspace();
+        }
+
+        if (target.classList.contains('percentage')) {
+            addPercentage();
+            return;
         }
 
         inputDigit(target.innerText);
