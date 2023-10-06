@@ -143,5 +143,4 @@ for (let button of buttons) {
     });
 }
 
-
 module.exports = buttons;

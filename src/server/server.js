@@ -1,11 +1,14 @@
 const Hapi = require('@hapi/hapi');
+const Inert = require('@hapi/inert');
 const { Worker, isMainThread, parentPort } = require('worker_threads');
 
 const init = async () => {
   const server = Hapi.server({
-    port: 5000,
+    port: 3000,
     host: 'localhost',
   });
+
+  await server.register(Inert); // Daftarkan modul Inert
 
   server.route([
     {
@@ -14,15 +17,17 @@ const init = async () => {
       handler: async (request, h) => {
         if (isMainThread) {
           try {
+            const { expression } = request.payload;
+
             // Membuat worker thread untuk menjalankan perhitungan
-            const worker = new Worker('./calculator.js', {
-              workerData: request.payload.expression,
+            const worker = new Worker('./calculator_worker.js', {
+              workerData: expression,
             });
 
             return new Promise((resolve, reject) => {
               worker.on('message', (message) => {
-                // Terima hasil dari worker thread
-                resolve({ result: message.result });
+                // Terima hasil dari worker thread dan kirimkan sebagai respons
+                resolve({ result: message.result, error: message.error });
               });
 
               worker.on('error', (error) => {
