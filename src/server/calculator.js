@@ -142,3 +142,6 @@ for (let button of buttons) {
         updateDisplay()
     });
 }
+
+
+module.exports = buttons;
