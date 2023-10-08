@@ -98,6 +98,26 @@ function addPercentage() {
     updateDisplay();
 }
 
+// Menambahkan fungsi untuk mengirim ekspresi matematika ke server
+function sendExpressionToServer(expression) {
+    fetch('/calculate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ expression }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Menampilkan hasil perhitungan dari server di displayNumber
+        calculator.displayNumber = data.result.toString();
+        updateDisplay();
+       })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+  
   
 const buttons = document.querySelectorAll(".button");
 for (let button of buttons) {
@@ -124,10 +144,10 @@ for (let button of buttons) {
             return;
         }
  
-        if (target.classList.contains('operator')) {
-            handleOperator(target.innerText)
-            return;
-        }
+        // if (target.classList.contains('operator')) {
+        //     handleOperator(target.innerText)
+        //     return;
+        // }
         
         if (target.classList.contains('backspace')) { 
             backspace();
@@ -137,10 +157,15 @@ for (let button of buttons) {
             addPercentage();
             return;
         }
-
+        
+        if (target.classList.contains('equals')) {
+            // Memproses dan mengirim ekspresi matematika ke server
+            sendExpressionToServer(calculator.displayNumber);
+            // updateDisplay();
+            return;
+          }
+          
         inputDigit(target.innerText);
         updateDisplay()
     });
 }
-
-module.exports = buttons;
