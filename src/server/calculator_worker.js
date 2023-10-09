@@ -4,8 +4,10 @@ const { workerData, parentPort } = require('worker_threads');
 function calculateExpression(expression) {
   try {
     const result = eval(expression); // Evaluasi ekspresi matematika
-    parentPort.postMessage({ result });
+    parentPort.postMessage({ "result": result });
+
   } catch (error) {
+    console.log(error);
     parentPort.postMessage({ error: 'Terjadi kesalahan dalam perhitungan.' });
   }
 }
